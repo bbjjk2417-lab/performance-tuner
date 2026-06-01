@@ -1,0 +1,4 @@
+psutil==5.9.6
+colorama==0.4.6
+pynput==1.7.6
+requests==2.31.0
