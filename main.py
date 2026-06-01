@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Performance Tuner - Main Entry Point (Updated with License Protection)
-A comprehensive PC optimization and tweaking tool
+Now uses Majus Tweaks home page
 """
 
 import os
@@ -9,7 +9,7 @@ import sys
 import time
 from colorama import Fore, Back, Style, init
 from utils.admin_check import check_admin
-from license_validator import validate_license
+from home import MajusTweaksHome
 from system_optimizer import SystemOptimizer
 from network_optimizer import NetworkOptimizer
 from disk_cleaner import DiskCleaner
@@ -27,16 +27,18 @@ class PerformanceTuner:
         self.gaming_opt = GamingOptimizer()
 
     def print_header(self):
+        """Print Majus Tweaks header"""
         print(Fore.CYAN + Back.BLACK + """
 ╔════════════════════════════════════════╗
-║      PERFORMANCE TUNER v1.0.0          ║
-║   PC Optimization & Gaming Booster     ║
+║         ⚡ MAJUS TWEAKS ⚡            ║
+║    Professional PC Optimization        ║
 ╚════════════════════════════════════════╝
         """)
 
     def print_menu(self):
+        """Print main menu"""
         print(Fore.GREEN + "\n" + "="*50)
-        print(Fore.YELLOW + "MAIN MENU")
+        print(Fore.YELLOW + "OPTIMIZATION DASHBOARD")
         print(Fore.GREEN + "="*50)
         print(Fore.CYAN + """
 1. 🎮 Gaming Optimizer (Best for Fortnite)
@@ -99,7 +101,7 @@ class PerformanceTuner:
     def show_info(self):
         print(Fore.CYAN + """
 ╔════════════════════════════════════════╗
-║         PERFORMANCE TUNER INFO         ║
+║      ⚡ MAJUS TWEAKS - INFORMATION ⚡  ║
 ╚════════════════════════════════════════╝
 
 📋 WHAT THIS TOOL DOES:
@@ -123,26 +125,27 @@ class PerformanceTuner:
    - Clears cache
    - Removes old logs
    - Frees up disk space
-   - Defragments critical areas
 
 ⚙️  System Optimizer:
    - Manages startup programs
    - Optimizes CPU usage
    - Frees RAM memory
    - Disables visual effects
-   - Improves system responsiveness
 
 📊 System Monitor:
    - Real-time CPU usage
    - RAM consumption
    - Disk I/O
    - Network latency (Ping)
-   - FPS counter for games
+
+🔐 Licensed Protection:
+   - Secure activation with license keys
+   - Usage tracking
+   - Admin management
 
 ⚠️  IMPORTANT:
    - Run with Administrator privileges
    - Create system restore point first
-   - This tool modifies system settings
    - Backup important data before use
 
         """)
@@ -169,7 +172,7 @@ class PerformanceTuner:
             elif choice == '7':
                 self.show_info()
             elif choice == '8':
-                print(Fore.GREEN + "\n✓ Thank you for using Performance Tuner!")
+                print(Fore.GREEN + "\n✓ Thank you for using Majus Tweaks!")
                 print(Fore.CYAN + "For best results, restart your computer.\n")
                 sys.exit(0)
             else:
@@ -179,14 +182,18 @@ class PerformanceTuner:
 
 
 def main():
+    """Main entry point with license validation"""
+    # Check admin privileges
     if not check_admin():
-        print(Fore.RED + "\n❌ This tool requires Administrator privileges!")
+        print(Fore.RED + "\n❌ Majus Tweaks requires Administrator privileges!")
         print(Fore.YELLOW + "Please run this script as Administrator and try again.\n")
         sys.exit(1)
 
-    # Validate license key first
-    validate_license()
+    # Show home page and validate license
+    home = MajusTweaksHome()
+    home.launch()
     
+    # If license is valid, run the main tool
     tuner = PerformanceTuner()
     tuner.main_loop()
 
